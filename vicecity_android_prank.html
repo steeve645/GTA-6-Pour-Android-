@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b12">
+<title>GTA VI Mobile — Android</title>
+<style>
+:root{--bg:#090b12;--panel:#111725;--pink:#ff4fa3;--gold:#ffd166;--muted:#aab3c5}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 80% 10%,#57245b 0,transparent 35%),radial-gradient(circle at 10% 80%,#143c56 0,transparent 38%),var(--bg);color:#fff;font-family:Arial,Helvetica,sans-serif;min-height:100vh}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 7%;border-bottom:1px solid #ffffff18}
+.brand{font-weight:900;letter-spacing:2px;font-size:18px}.brand span{color:var(--pink)}
+.pill{border:1px solid #ffffff35;border-radius:30px;padding:8px 12px;color:#dce4f3;font-size:11px;letter-spacing:1px}
+main{max-width:1100px;margin:auto;padding:55px 22px 35px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:35px;align-items:center}
+.kicker{color:var(--gold);font-weight:bold;letter-spacing:3px;font-size:12px}
+h1{font-size:clamp(42px,8vw,82px);line-height:.9;margin:18px 0;text-transform:uppercase;letter-spacing:-3px}
+h1 span{display:block;color:var(--pink);text-shadow:0 5px 30px #ff4fa355}
+.sub{color:#d1d8e5;line-height:1.7;max-width:540px;font-size:16px}
+.specs{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}
+.spec{background:#ffffff12;border:1px solid #ffffff20;border-radius:12px;padding:11px 14px;font-size:12px;color:#e8edf7}
+.download{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(100deg,#ff4fa3,#ff8c69);color:#160d19;text-decoration:none;font-weight:900;letter-spacing:1px;padding:17px 25px;border-radius:12px;box-shadow:0 12px 35px #ff4fa333;border:0;font-size:14px;cursor:pointer}
+.note{color:#9da8bb;font-size:11px;margin-top:12px}
+.art{min-height:390px;border-radius:25px;border:1px solid #ffffff2a;overflow:hidden;position:relative;background:linear-gradient(145deg,#ff8c69aa,#8d3c9c55 42%,#102d49),linear-gradient(0deg,#080a12,#263e62);box-shadow:0 25px 70px #0008}
+.sun{position:absolute;width:190px;height:190px;border-radius:50%;background:linear-gradient(#ffd166,#ff4fa3);top:50px;right:45px;filter:blur(1px);box-shadow:0 0 70px #ff4fa377}
+.city{position:absolute;bottom:0;left:0;right:0;height:62%;background:linear-gradient(transparent,#09101d 18%)}
+.building{position:absolute;bottom:0;background:linear-gradient(90deg,#101b2c,#24364d,#101827);border:1px solid #ffffff18}
+.b1{left:2%;width:22%;height:54%}.b2{left:25%;width:17%;height:78%}.b3{left:45%;width:21%;height:62%}.b4{right:2%;width:27%;height:88%}
+.building:after{content:"";position:absolute;inset:12px;background:repeating-linear-gradient(0deg,transparent 0 17px,#ffb7df77 18px 21px),repeating-linear-gradient(90deg,transparent 0 18px,#ffb7df55 19px 22px);opacity:.7}
+.road{position:absolute;bottom:-25px;left:18%;width:75%;height:46%;background:linear-gradient(165deg,#263347,#080d16);clip-path:polygon(25% 0,75% 0,100% 100%,0 100%)}
+.car{position:absolute;bottom:65px;right:23%;width:145px;height:44px;background:linear-gradient(#f5a4d3,#7a2d70);border-radius:45% 35% 12px 12px;box-shadow:0 12px 24px #ff4fa355}
+.car:before{content:"";position:absolute;left:35px;top:-22px;width:75px;height:30px;background:#293b57;clip-path:polygon(20% 0,80% 0,100% 100%,0 100%)}
+.art-label{position:absolute;left:22px;top:22px;font-size:12px;letter-spacing:3px;font-weight:bold;text-shadow:0 2px 8px #000}
+.art-bottom{position:absolute;bottom:20px;left:22px;font-size:clamp(22px,4vw,34px);font-weight:900;text-transform:uppercase;text-shadow:0 3px 12px #000}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:45px}
+.card{background:#ffffff0b;border:1px solid #ffffff18;padding:20px;border-radius:16px}
+.card b{display:block;margin-bottom:8px;color:var(--gold)}.card p{color:var(--muted);font-size:13px;line-height:1.5;margin:0}
+footer{text-align:center;color:#8994a8;font-size:11px;padding:25px 15px 35px}
+.overlay{position:fixed;inset:0;background:#03050bdc;display:none;align-items:center;justify-content:center;padding:20px;z-index:5}
+.modal{max-width:440px;width:100%;background:#141c2b;border:1px solid #ffffff30;border-radius:22px;padding:28px;text-align:center;box-shadow:0 25px 80px #000}
+.modal h2{font-size:30px;margin:10px 0;color:var(--gold)}.modal p{color:#d3dbea;line-height:1.6}
+.progress{height:9px;background:#ffffff1c;border-radius:20px;overflow:hidden;margin:20px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,var(--pink),var(--gold));transition:width 2.2s}
+.close{margin-top:8px;background:#ffffff15;color:white;border:1px solid #ffffff30;padding:12px 18px;border-radius:10px;font-weight:bold;cursor:pointer}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.art{min-height:300px}.details{grid-template-columns:1fr}header{padding:17px 5%}main{padding-top:38px}}
+</style>
+</head>
+<body>
+<header><div class="brand">VICE<span>CITY</span> MOBILE</div><div class="pill">ANDROID • MOBILE EDITION</div></header>
+<main>
+<section class="hero">
+<div>
+<div class="kicker">L'EXPÉRIENCE NEXT-GEN SUR MOBILE</div>
+<h1>Grand Theft<br><span>Auto VI</span></h1>
+<p class="sub">Vice City tient désormais dans ta poche. Découvre une expérience mobile immersive, des rues animées et une ville qui ne dort jamais.</p>
+<div class="specs"><div class="spec">📱 Android 10+</div><div class="spec">⚡ Version mobile</div><div class="spec">🎮 Commandes tactiles</div></div>
+<button class="download" id="download">⬇ TÉLÉCHARGER POUR ANDROID</button>
+<div class="note">Version de démonstration • Aucun fichier APK n'est téléchargé</div>
+</div>
+<div class="art"><div class="sun"></div><div class="city"><div class="building b1"></div><div class="building b2"></div><div class="building b3"></div><div class="building b4"></div><div class="road"></div><div class="car"></div></div><div class="art-label">VICE CITY • 2026</div><div class="art-bottom">Bienvenue<br>à Vice City</div></div>
+</section>
+<section class="details">
+<div class="card"><b>🌴 Un monde immense</b><p>Explore les quartiers, les plages et les rues illuminées de Vice City.</p></div>
+<div class="card"><b>📲 Optimisé mobile</b><p>Interface tactile fictive pensée pour les joueurs Android.</p></div>
+<div class="card"><b>🚘 Liberté totale</b><p>Conduis, explore et invente ton propre scénario dans cette maquette.</p></div>
+</section>
+</main>
+<footer>Site parodique créé pour une blague entre amis. Non officiel, sans affiliation avec Rockstar Games. Aucun téléchargement réel.</footer>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true">
+<div class="modal">
+<div style="font-size:42px">😂</div><h2>PRANK RÉUSSI !</h2>
+<p>Tu as vraiment cru que GTA VI était disponible sur Android ? 😭<br><br><b>Aucun APK n'a été téléchargé.</b><br>Ceci est une fausse page de téléchargement créée pour la blague.</p>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<button class="close" id="close">OK, TU M'AS EU</button>
+</div>
+</div>
+<script>
+const overlay=document.getElementById('overlay');
+document.getElementById('download').addEventListener('click',()=>{
+ overlay.style.display='flex';
+ const bar=document.getElementById('bar');bar.style.width='0';
+ setTimeout(()=>bar.style.width='100%',80);
+});
+document.getElementById('close').addEventListener('click',()=>overlay.style.display='none');
+overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.style.display='none'});
+</script>
+</body>
+</html>
